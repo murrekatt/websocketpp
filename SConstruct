@@ -76,7 +76,7 @@ elif env['PLATFORM'] == 'posix':
    else:
       env.Append(CPPDEFINES = ['NDEBUG'])
       env.Append(CCFLAGS = ['-O1', '-fomit-frame-pointer'])
-   env.Append(CCFLAGS = ['-Wall -std=c++11'])
+   env.Append(CCFLAGS = ['-Wall'])
    #env['LINKFLAGS'] = ''
 elif env['PLATFORM'] == 'darwin':
    if not os.environ.has_key('CXX'):
@@ -86,7 +86,7 @@ elif env['PLATFORM'] == 'darwin':
    else:
       env.Append(CPPDEFINES = ['NDEBUG'])
       env.Append(CCFLAGS = ['-O1', '-fomit-frame-pointer'])
-   env.Append(CCFLAGS = ['-Wall -std=c++11'])
+   env.Append(CCFLAGS = ['-Wall'])
    #env['LINKFLAGS'] = ''
 
 if env['PLATFORM'].startswith('win'):
@@ -141,13 +141,13 @@ if env_cpp11['CXX'].startswith('g++'):
 
    if GCC_VERSION > "4.4.0":
       print "C++11 build environment partially enabled"
-      env_cpp11.Append(WSPP_CPP11_ENABLED = "true",CXXFLAGS = ['-std=c++0x'],TOOLSET = ['g++'],CPPDEFINES = ['_WEBSOCKETPP_CPP11_STL_'])
+      env_cpp11.Append(WSPP_CPP11_ENABLED = "true",CXXFLAGS = ['-std=c++11'],TOOLSET = ['g++'],CPPDEFINES = ['_WEBSOCKETPP_CPP11_STL_'])
    else:
       print "C++11 build environment is not supported on this version of G++"
 elif env_cpp11['CXX'].startswith('clang++'):
    print "C++11 build environment enabled"
    env.Append(CXXFLANGS = ['-stdlib=libc++'],LINKFLAGS=['-stdlib=libc++'])
-   env_cpp11.Append(WSPP_CPP11_ENABLED = "true",CXXFLAGS = ['-std=c++0x','-stdlib=libc++'],LINKFLAGS = ['-stdlib=libc++'],TOOLSET = ['clang++'],CPPDEFINES = ['_WEBSOCKETPP_CPP11_STL_'])
+   env_cpp11.Append(WSPP_CPP11_ENABLED = "true",CXXFLAGS = ['-std=c++11','-stdlib=libc++'],LINKFLAGS = ['-stdlib=libc++'],TOOLSET = ['clang++'],CPPDEFINES = ['_WEBSOCKETPP_CPP11_STL_'])
 
    # look for optional second boostroot compiled with clang's libc++ STL library
    # this prevents warnings/errors when linking code built with two different
