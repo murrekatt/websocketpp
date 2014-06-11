@@ -116,10 +116,13 @@ tls_libs = []
 
 tls_build = False
 
+stdlib = '-stdlib=libc++'
+
 if env['PLATFORM'] == 'posix':
    platform_libs = ['pthread', 'rt']
    tls_libs = ['ssl', 'crypto']
    tls_build = True
+   '-stdlib=libstdc++'
 elif env['PLATFORM'] == 'darwin':
    tls_libs = ['ssl', 'crypto']
    tls_build = True
@@ -146,8 +149,8 @@ if env_cpp11['CXX'].startswith('g++'):
       print "C++11 build environment is not supported on this version of G++"
 elif env_cpp11['CXX'].startswith('clang++'):
    print "C++11 build environment enabled"
-   env.Append(CXXFLANGS = ['-stdlib=libc++'],LINKFLAGS=['-stdlib=libc++'])
-   env_cpp11.Append(WSPP_CPP11_ENABLED = "true",CXXFLAGS = ['-std=c++11','-stdlib=libc++'],LINKFLAGS = ['-stdlib=libc++'],TOOLSET = ['clang++'],CPPDEFINES = ['_WEBSOCKETPP_CPP11_STL_'])
+   env.Append(CXXFLANGS = [stdlib],LINKFLAGS=[stdlib])
+   env_cpp11.Append(WSPP_CPP11_ENABLED = "true",CXXFLAGS = ['-std=c++11',stdlib],LINKFLAGS = [stdlib],TOOLSET = ['clang++'],CPPDEFINES = ['_WEBSOCKETPP_CPP11_STL_'])
 
    # look for optional second boostroot compiled with clang's libc++ STL library
    # this prevents warnings/errors when linking code built with two different
