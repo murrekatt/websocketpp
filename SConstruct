@@ -76,7 +76,7 @@ elif env['PLATFORM'] == 'posix':
    else:
       env.Append(CPPDEFINES = ['NDEBUG'])
       env.Append(CCFLAGS = ['-O1', '-fomit-frame-pointer'])
-   env.Append(CCFLAGS = ['-Wall'])
+   env.Append(CCFLAGS = ['-Wall', '-Wextra'])
    #env['LINKFLAGS'] = ''
 elif env['PLATFORM'] == 'darwin':
    if not os.environ.has_key('CXX'):
@@ -86,7 +86,7 @@ elif env['PLATFORM'] == 'darwin':
    else:
       env.Append(CPPDEFINES = ['NDEBUG'])
       env.Append(CCFLAGS = ['-O1', '-fomit-frame-pointer'])
-   env.Append(CCFLAGS = ['-Wall'])
+   env.Append(CCFLAGS = ['-Wall', '-Wextra'])
    #env['LINKFLAGS'] = ''
 
 if env['PLATFORM'].startswith('win'):
